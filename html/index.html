@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
        
      <form id="add-order">
         <div class="form-container">
             <label for="name">Name:</label>
-           <input type="name" id="name" name="name" required placeholder="E.g John" />
+           <input type="name" id="name" name="name" placeholder="E.g John" />
              <label for="service-type">Service Type:</label> 
            <select id="service-type">
                 <option value="">--Choose--</option>
@@ -20,9 +20,9 @@
                   <option value="Heavy / Delicate">Heavy / Delicate</option>
             </select>
             <label for="weight">Weight(Kg):</label>
-             <input type="number" id="weight" name="number" required placeholder="E.g 10Kg"/>
+             <input type="number" id="weight" name="number" placeholder="E.g 10Kg"/>
              <label for="price">Price</label>
-             <input type="number" id="price-number" name="price-number" required placeholder="E.g 100" />
+             <input type="number" id="price-number" name="price-number"  placeholder="E.g 100" />
              <label for="order-type">Order Type:</label>
              <select id="order-type">
                 <option value="">--Choose--</option>
@@ -33,8 +33,7 @@
         </div>
     </form>
         <div id="order-list" class="order-cards">
-
         </div>
-    <script src="script.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
