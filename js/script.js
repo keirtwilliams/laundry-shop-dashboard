@@ -25,46 +25,55 @@ handleOrder.addEventListener("submit", function(e){
 
     //persistent in-memory array for application state
     let newOrder = {
-        id: Date.now(),
+        id: String(Date.now()).slice(6),
         customerName: customerName,
         serviceType: serviceType,                                                                             
         weight: weight,
         price: price,
         orderType: orderType    
     }
-     
           //returns a new array 
         orders.push(newOrder);
-        renderOrder();    
-         
-        //reset after submitting
-        
+        renderOrder();       
 });
+       //delete function
+    list.addEventListener("click", function(e){
+        if(e.target.classList.contains("delete-order")){
+            const card = e.target.closest(".order-card");
+            const id = card.dataset.id;
+        orders = orders.filter(
+            order => String(order.id).trim() !== String(id).trim());   
+         renderOrder();
+        }   
+    });
 
-    //render list to the UI
-    function renderOrder(){
-    list.innerHTML = "";
-     orders.forEach((order) => {
-         let div = document.createElement("div");
-         div.setAttribute("data-id", order.id);
-         div.className = 'order-card';
-         div.innerHTML = `
-                       <h1 class="">${order.customerName} </h1> 
-                       <p class="">${order.serviceType} </p> 
-                       <p class="">${order.weight}kg</p> 
-                       <p class="">₱${order.price} </p>
-                       <p class="">${order.orderType} </p>
-                          <div class="order-actions"> 
-                       <button class="edit-order">Edit</button> 
-                       <button class="delete-order">Delete</button> 
-                    </div>
-         `;  
-         
-         list.append(div);
-     });
+        //render list to the UI
+   function renderOrder() {
+    list.innerHTML = ""; 
+    const fragment = document.createDocumentFragment();
+    orders.forEach((order) => {
+        let div = document.createElement("div");
+        div.setAttribute("data-id", order.id);
+        div.className = 'order-card';
+        div.innerHTML = `
+            <h1>${order.customerName}</h1> 
+            <p>${order.serviceType}</p> 
+            <p>${order.weight}kg</p> 
+            <p>₱${order.price}</p>
+            <p>${order.orderType}</p>
+            <div class="order-actions"> 
+                <button class="edit-order">Edit</button> 
+                <button class="delete-order">Delete</button> 
+            </div>
+        `;
+        fragment.append(div);
+    });
+    list.append(fragment);
 }
 
-  function orderValidation(customerName, serviceType, weight, price, orderType){
+
+    //basic validaiton using boolean
+     function orderValidation(customerName, serviceType, weight, price, orderType){
     if(customerName === ""){
         alert("Please input a name.");
         return false;
@@ -86,4 +95,9 @@ handleOrder.addEventListener("submit", function(e){
         return false;
     }
     return true;
-  }
+  } 
+
+
+  
+
+ 
