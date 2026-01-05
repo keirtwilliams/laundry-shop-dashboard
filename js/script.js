@@ -42,7 +42,7 @@ handleOrder.addEventListener("submit", function(e){
             const card = e.target.closest(".order-card");
             const id = card.dataset.id;
         orders = orders.filter(
-            order => String(order.id).trim() !== String(id).trim());   
+            order => order.id !== id);   
          renderOrder();
         }   
     });
