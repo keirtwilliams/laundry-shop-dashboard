@@ -1,10 +1,10 @@
 let orders = [];
+let editingID = null;
 
-let list = document.querySelector("#order-list")
-
-   //submit handler
+let list = document.querySelector("#order-list");
+         //submit handler
 let handleOrder = document.querySelector("#add-order");
-    //event happens with preventdefault
+        //event happens with preventdefault
 handleOrder.addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -15,7 +15,7 @@ handleOrder.addEventListener("submit", function(e){
     let price = document.querySelector("#price-number").value;
     let orderType = document.querySelector("#order-type").value;
       
-             //boolean validation if isvalid false -> return ordervalidation()
+         //boolean validation if isvalid false -> return ordervalidation()
        const isValid = orderValidation(customerName,serviceType,weight,price,orderType);
     if(!isValid){
         return;
@@ -23,20 +23,36 @@ handleOrder.addEventListener("submit", function(e){
         handleOrder.reset()
     }
 
-    //persistent in-memory array for application state
+        //persistent in-memory array for application state
     let newOrder = {
         id: String(Date.now()).slice(6),
         customerName: customerName,
         serviceType: serviceType,                                                                             
-        weight: weight,
-        price: price,
-        orderType: orderType    
+        weight: Number(weight),
+        price: Number(price),   
+        orderType: orderType   
     }
-          //returns a new array 
+
+   if(editingID){
+        const foundOrder = orders.find(newOrders => newOrders.id === editingID);
+        if(foundOrder){
+            foundOrder.customerName = customerName;
+            foundOrder.serviceType = serviceType;
+            foundOrder.weight = weight;
+            foundOrder.price = price;
+            foundOrder.orderType = orderType;
+        }
+        addbtn = document.querySelector(".add-btn");
+        addbtn.textContent = "Add Order";
+        editingID = null;
+     } else {
+
         orders.push(newOrder);
-        renderOrder();       
+        console.log(newOrder);
+          }
+        renderOrder();
 });
-       //delete function
+        //delete function
     list.addEventListener("click", function(e){
         if(e.target.classList.contains("delete-order")){
             const card = e.target.closest(".order-card");
@@ -45,6 +61,25 @@ handleOrder.addEventListener("submit", function(e){
             order => order.id !== id);   
          renderOrder();
         }   
+
+    });
+
+    list.addEventListener("click", function(e){
+        if(e.target.classList.contains("edit-order")){
+           const card = e.target.closest(".order-card");
+           const id = card.dataset.id;
+       
+       const newOrders = orders.find(newOrders => newOrders.id == id);
+             addbtn = document.querySelector(".add-btn");
+             addbtn.textContent = "Save Changes";
+
+            document.querySelector("#name").value = newOrders.customerName;
+            document.querySelector("#service-type").value = newOrders.serviceType;
+            document.querySelector("#weight").value = newOrders.weight;
+            document.querySelector("#price-number").value = newOrders.price;
+            document.querySelector("#order-type").value = newOrders.orderType;
+            editingID = id;
+         }     
     });
 
         //render list to the UI
@@ -71,8 +106,7 @@ handleOrder.addEventListener("submit", function(e){
     list.append(fragment);
 }
 
-
-    //basic validaiton using boolean
+        //basic validaiton using boolean
      function orderValidation(customerName, serviceType, weight, price, orderType){
     if(customerName === ""){
         alert("Please input a name.");
