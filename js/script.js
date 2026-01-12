@@ -1,7 +1,7 @@
 let orders = [];
 let editingID = null;
 
-let list = document.querySelector("#order-list");
+let tbody = document.querySelector("#order-list");
          //submit handler
 let handleOrder = document.querySelector("#add-order");
         //event happens with preventdefault
@@ -44,7 +44,10 @@ handleOrder.addEventListener("submit", function(e){
         }
         addbtn = document.querySelector(".add-btn");
         addbtn.textContent = "Add Order";
-        editingID = null;
+
+               //RESET AFTER THE ORDER WAS SAVED
+         editingID = null;
+
      } else {
 
         orders.push(newOrder);
@@ -53,9 +56,9 @@ handleOrder.addEventListener("submit", function(e){
         renderOrder();
 });
         //delete function
-    list.addEventListener("click", function(e){
-        if(e.target.classList.contains("delete-order")){
-            const card = e.target.closest(".order-card");
+    tbody.addEventListener("click", function(e){
+        if(e.target.classList.contains("order-delete")){
+            const card = e.target.closest(".order-table");
             const id = card.dataset.id;
         orders = orders.filter(
             order => order.id !== id);   
@@ -63,10 +66,10 @@ handleOrder.addEventListener("submit", function(e){
         }   
 
     });
-
-    list.addEventListener("click", function(e){
-        if(e.target.classList.contains("edit-order")){
-           const card = e.target.closest(".order-card");
+            //MODIFYING ARRAY
+    tbody.addEventListener("click", function(e){
+        if(e.target.classList.contains("order-edit")){
+           const card = e.target.closest(".order-table");
            const id = card.dataset.id;
        
        const newOrders = orders.find(newOrders => newOrders.id == id);
@@ -83,27 +86,31 @@ handleOrder.addEventListener("submit", function(e){
     });
 
         //render list to the UI
-   function renderOrder() {
-    list.innerHTML = ""; 
-    const fragment = document.createDocumentFragment();
-    orders.forEach((order) => {
-        let div = document.createElement("div");
-        div.setAttribute("data-id", order.id);
-        div.className = 'order-card';
-        div.innerHTML = `
-            <h1>${order.customerName}</h1> 
-            <p>${order.serviceType}</p> 
-            <p>${order.weight}kg</p> 
-            <p>₱${order.price}</p>
-            <p>${order.orderType}</p>
-            <div class="order-actions"> 
-                <button class="edit-order">Edit</button> 
-                <button class="delete-order">Delete</button> 
-            </div>
-        `;
-        fragment.append(div);
-    });
-    list.append(fragment);
+ 
+
+
+function renderOrder(){
+  tbody.innerHTML = "";
+  const fragment = document.createDocumentFragment();
+  orders.forEach(order =>  {
+   const tr = document.createElement("tr");
+      tr.setAttribute("data-id", order.id);
+      tr.className = "order-table";
+      tr.innerHTML = 
+                   `
+                   <td>${order.customerName}</td>
+                    <td>${order.serviceType}</td>
+                     <td>${order.weight}</td>
+                      <td>${order.price}</td>
+                       <td>${order.orderType}</td>            
+                       <td>
+                           <button class="order-edit">Edit</button>
+                           <button class="order-delete">Delete</button>
+                       </td>
+                   `;
+       fragment.append(tr); 
+  });
+   tbody.append(fragment);
 }
 
         //basic validaiton using boolean
