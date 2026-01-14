@@ -13,10 +13,10 @@ handleOrder.addEventListener("submit", function(e){
     let serviceType = document.querySelector("#service-type").value;
     let weight = document.querySelector("#weight").value;
     let price = document.querySelector("#price-number").value;
-    let orderType = document.querySelector("#order-type").value;
+    let paymentType = document.querySelector("#payment-type").value;
       
          //boolean validation if isvalid false -> return ordervalidation()
-       const isValid = orderValidation(customerName,serviceType,weight,price,orderType);
+       const isValid = orderValidation(customerName,serviceType,weight,price,paymentType);
     if(!isValid){
         return;
     }  else {
@@ -25,12 +25,12 @@ handleOrder.addEventListener("submit", function(e){
 
         //persistent in-memory array for application state
     let newOrder = {
-        id: String(Date.now()).slice(6),
+        id: String(Date.now()).slice(8),
         customerName: customerName,
         serviceType: serviceType,                                                                             
         weight: Number(weight),
         price: Number(price),   
-        orderType: orderType   
+        paymentType: paymentType  
     }
 
    if(editingID){
@@ -40,7 +40,7 @@ handleOrder.addEventListener("submit", function(e){
             foundOrder.serviceType = serviceType;
             foundOrder.weight = weight;
             foundOrder.price = price;
-            foundOrder.orderType = orderType;
+            foundOrder.paymentType = paymentType;
         }
         addbtn = document.querySelector(".add-btn");
         addbtn.textContent = "Add Order";
@@ -80,15 +80,13 @@ handleOrder.addEventListener("submit", function(e){
             document.querySelector("#service-type").value = newOrders.serviceType;
             document.querySelector("#weight").value = newOrders.weight;
             document.querySelector("#price-number").value = newOrders.price;
-            document.querySelector("#order-type").value = newOrders.orderType;
+            document.querySelector("#payment-type").value = newOrders.paymentType;
             editingID = id;
          }     
     });
 
         //render list to the UI
  
-
-
 function renderOrder(){
   tbody.innerHTML = "";
   const fragment = document.createDocumentFragment();
@@ -98,15 +96,17 @@ function renderOrder(){
       tr.className = "order-table";
       tr.innerHTML = 
                    `
+                   <td>${order.id} </td>
                    <td>${order.customerName}</td>
                     <td>${order.serviceType}</td>
-                     <td>${order.weight}</td>
-                      <td>${order.price}</td>
-                       <td>${order.orderType}</td>            
-                       <td>
+                     <td>${order.weight}kg</td>
+                      <td>₱${order.price}</td>
+                       <td>${order.paymentType}</td>            
+                        <td>
                            <button class="order-edit">Edit</button>
                            <button class="order-delete">Delete</button>
                        </td>
+                      
                    `;
        fragment.append(tr); 
   });
@@ -114,7 +114,7 @@ function renderOrder(){
 }
 
         //basic validaiton using boolean
-     function orderValidation(customerName, serviceType, weight, price, orderType){
+     function orderValidation(customerName, serviceType, weight, price, paymentType){
     if(customerName === ""){
         alert("Please input a name.");
         return false;
@@ -131,8 +131,8 @@ function renderOrder(){
         alert("Please input a price.");
         return false;
     }
-    if(orderType === ""){
-        alert("Please select a Order Category.");
+    if(paymentType === ""){
+        alert("Please select a Payment Category.");
         return false;
     }
     return true;
