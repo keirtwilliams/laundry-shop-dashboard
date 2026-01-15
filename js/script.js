@@ -14,9 +14,9 @@ handleOrder.addEventListener("submit", function(e){
     let weight = document.querySelector("#weight").value;
     let price = document.querySelector("#price-number").value;
     let paymentType = document.querySelector("#payment-type").value;
-      
+    let statusType = document.querySelector("#status-type").value;
          //boolean validation if isvalid false -> return ordervalidation()
-       const isValid = orderValidation(customerName,serviceType,weight,price,paymentType);
+       const isValid = orderValidation(customerName,serviceType,weight,price,paymentType, statusType);
     if(!isValid){
         return;
     }  else {
@@ -30,7 +30,8 @@ handleOrder.addEventListener("submit", function(e){
         serviceType: serviceType,                                                                             
         weight: Number(weight),
         price: Number(price),   
-        paymentType: paymentType  
+        paymentType: paymentType,
+        statusType: statusType
     }
 
    if(editingID){
@@ -41,6 +42,7 @@ handleOrder.addEventListener("submit", function(e){
             foundOrder.weight = weight;
             foundOrder.price = price;
             foundOrder.paymentType = paymentType;
+            foundOrder.statusType = statusType;
         }
         addbtn = document.querySelector(".add-btn");
         addbtn.textContent = "Add Order";
@@ -81,9 +83,12 @@ handleOrder.addEventListener("submit", function(e){
             document.querySelector("#weight").value = newOrders.weight;
             document.querySelector("#price-number").value = newOrders.price;
             document.querySelector("#payment-type").value = newOrders.paymentType;
+            document.querySelector("#status-type").value = newOrders.statusType;
             editingID = id;
          }     
     });
+
+
 
         //render list to the UI
  
@@ -101,7 +106,8 @@ function renderOrder(){
                     <td>${order.serviceType}</td>
                      <td>${order.weight}kg</td>
                       <td>₱${order.price}</td>
-                       <td>${order.paymentType}</td>            
+                       <td>${order.paymentType}</td>      
+                       <td>${order.statusType}      
                         <td>
                            <button class="order-edit">Edit</button>
                            <button class="order-delete">Delete</button>
@@ -114,7 +120,7 @@ function renderOrder(){
 }
 
         //basic validaiton using boolean
-     function orderValidation(customerName, serviceType, weight, price, paymentType){
+     function orderValidation(customerName, serviceType, weight, price, paymentType, statusType){
     if(customerName === ""){
         alert("Please input a name.");
         return false;
@@ -132,6 +138,10 @@ function renderOrder(){
         return false;
     }
     if(paymentType === ""){
+        alert("Please select a Payment Category.");
+        return false;
+    }
+    if(statusType === ""){
         alert("Please select a Payment Category.");
         return false;
     }
