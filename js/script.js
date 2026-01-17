@@ -146,12 +146,18 @@ function renderOrder(){
 
   function totalOrders(){
 const initialValue = 0;
-  const totalOrders  = orders.reduce(
+const totalOrder = orders.length;
+
+const TotalRevenue  = orders.reduce(
   (accumulator, currentValue) => accumulator + currentValue.price,
   initialValue,
 );
 
-const para = document.querySelector("#total-orders");
-para.textContent = totalOrders;
-console.log(totalOrders);
-  }
+const paraTotalOrder = document.querySelector("#total-orders");
+ paraTotalOrder.textContent = totalOrder;
+ 
+const paraTotalRevenue = document.querySelector("#total-revenue");
+paraTotalRevenue.textContent = new Intl.NumberFormat("PH", {style: "currency", currency:"PHP"}).format(TotalRevenue);
+
+};
+  
