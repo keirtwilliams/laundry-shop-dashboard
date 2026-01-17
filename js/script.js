@@ -154,4 +154,4 @@ const initialValue = 0;
 const para = document.querySelector("#total-orders");
 para.textContent = totalOrders;
 console.log(totalOrders);
- }
+  }
