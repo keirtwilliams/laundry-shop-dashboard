@@ -22,7 +22,6 @@ handleOrder.addEventListener("submit", function(e){
     }  else {
         handleOrder.reset()
     }
-
         //persistent in-memory array for application state
     let newOrder = {
         id: String(Date.now()).slice(8),
@@ -56,6 +55,7 @@ handleOrder.addEventListener("submit", function(e){
         console.log(newOrder);
           }
         renderOrder();
+        totalOrders();
 });
         //delete function
     tbody.addEventListener("click", function(e){
@@ -87,10 +87,6 @@ handleOrder.addEventListener("submit", function(e){
             editingID = id;
          }     
     });
-
-
-
-        //render list to the UI
  
 function renderOrder(){
   tbody.innerHTML = "";
@@ -107,7 +103,7 @@ function renderOrder(){
                      <td>${order.weight}kg</td>
                       <td>₱${order.price}</td>
                        <td>${order.paymentType}</td>      
-                       <td>${order.statusType}      
+                     <td>${order.statusType}</td>   
                         <td>
                            <button class="order-edit">Edit</button>
                            <button class="order-delete">Delete</button>
@@ -118,7 +114,6 @@ function renderOrder(){
   });
    tbody.append(fragment);
 }
-
         //basic validaiton using boolean
      function orderValidation(customerName, serviceType, weight, price, paymentType, statusType){
     if(customerName === ""){
@@ -149,6 +144,14 @@ function renderOrder(){
   } 
 
 
-  
+  function totalOrders(){
+const initialValue = 0;
+  const totalOrders  = orders.reduce(
+  (accumulator, currentValue) => accumulator + currentValue.price,
+  initialValue,
+);
 
- 
+const para = document.querySelector("#total-orders");
+para.textContent = totalOrders;
+console.log(totalOrders);
+ }
