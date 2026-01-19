@@ -1,0 +1,76 @@
+:root {
+    
+    --primary-color: #1E293B;
+    --secondary-color: #334155; 
+    --bg-color: #0F172A; 
+    --card-bg: #1E293B;
+    --text-main: #F1F5F9; 
+    --accent-color: #38BDF8; 
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
+    background-color:var(--bg-color) ;
+    padding: 2rem; 
+}
+
+.main-wrapper {
+    padding: 50px;
+    border: var(--border-color);
+    margin: 50px auto;
+    width: 70%;
+    background-color: var(--card-bg) ;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.button-container a {
+    text-decoration: none;
+    background-color: var(--accent-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+   color: var(--text-main);
+}
+
+.button-container {
+    text-align: end;
+    padding: 10px 20px;
+  color: var(--text-main);
+    
+}
+.order-table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    table-layout: fixed;
+    box-shadow: 0 4px rgba(0,0,0,0.5);
+    margin: 20px auto;
+}
+
+.order-table th {
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+
+.order-table thead {
+    background-color: var(--secondary-color);
+    color: var(--text-main);
+}
+
+.order-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
