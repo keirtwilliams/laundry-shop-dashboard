@@ -5,8 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/main.css">
+      <link rel="stylesheet" href="/css/form.css">
 </head>
 <body>
+
+          
+     <form id="add-order">
+        <div class="form-container">
+            <label for="name">Name:</label>
+           <input type="name" id="name" name="name" placeholder="E.g John" />
+             <label for="service-type">Service Type:</label> 
+           <select id="service-type">
+                <option value="">--Choose--</option>
+                <option value="Regular">Regular</option>
+                 <option value="Comforter">Comforter</option>
+                  <option value="Heavy / Delicate">Heavy / Delicate</option>
+            </select>
+            <label for="weight">Weight(Kg):</label>
+             <input type="number" id="weight" name="number" placeholder="E.g 10Kg"/>
+             <label for="price">Price</label>
+             <input type="number" id="price-number" name="price-number" step="any" placeholder="E.g 100" />
+             
+             <label for="payment-type">Payment Type:</label>
+             <select id="payment-type">
+                <option value="">--Choose--</option>
+                <option value="Unpaid">Unpaid</option>
+                 <option value="Partial/Downpayment">Delivery</option>
+                    <option value="Fully Paid">Fully Paid</option>
+             </select>
+              
+             <div class="order-card">
+             <label for="status-type">Status:</label>
+             <select id="status-type">
+                <option value="">--Choose--</option>
+                <option value="Pending">Pending</option>
+                 <option value="Washing">Washing</option>
+                  <option value="Completed">Completed</option>
+             </select>
+        </div>
+        <button class="add-btn" type="submit">Add Order</button> 
+        </div>
+         
+    </form>
+        
+
     <article class="main-wrapper">
 
                <div class="button-container">
@@ -30,6 +72,21 @@
             </tbody>
         </table>
 </article>
+
+  <div class="cards">
+            <div class="box">
+                <h1>Total Orders</h1>
+                <p id="total-orders">
+
+                </p>
+               </div>
+                 <div class="box">
+                <h1>Total Revenue</h1>
+               <p id="total-revenue">
+               </p>
+               </div>
+        </div>
+        
       <script src="/js/script.js"></script>
 </body>
 </html>

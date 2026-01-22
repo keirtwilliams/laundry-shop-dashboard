@@ -18,7 +18,7 @@ body {
     padding: 50px;
     border: var(--border-color);
     margin: 50px auto;
-    width: 70%;
+    width: 100%;
     background-color: var(--card-bg) ;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -45,7 +45,7 @@ body {
     overflow: hidden;
     border-radius: 12px;
     table-layout: fixed;
-    box-shadow: 0 4px rgba(0,0,0,0.5);
+    box-shadow: 0 4px rgba(255, 255, 255, 0.5);
     margin: 20px auto;
 }
 
@@ -57,20 +57,42 @@ body {
     white-space: nowrap;
 }
 
-
 .order-table thead {
     background-color: var(--secondary-color);
     color: var(--text-main);
 }
 
 .order-table td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #f1f1f1;
+    padding: 12px 15px;
     font-size: 0.95rem;
     color: var(--text-main);
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.order-edit,
+.order-delete {
+    padding: 7px 15px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.order-edit {
+    background-color: #FBBF24;
+}
+
+.order-edit:hover{
+    background-color: #d6a220 ;
+}
+.order-delete {
+    background-color:#EF4444;
+}
+
+.order-delete:hover {
+    background-color: #c43535;
 }
 
