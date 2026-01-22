@@ -32,6 +32,10 @@ body {
    color: var(--text-main);
 }
 
+a:hover{
+      background-color: #3392bb;
+}
+
 .button-container {
     text-align: end;
     padding: 10px 20px;

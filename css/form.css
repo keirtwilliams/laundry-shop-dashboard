@@ -57,3 +57,7 @@ input, select {
     cursor: pointer;
 }
 
+button:hover{
+   background-color: #3392bb;
+}
+
