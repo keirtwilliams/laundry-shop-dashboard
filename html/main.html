@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/main.css">
-      <link rel="stylesheet" href="/css/form.css">
 </head>
 <body>
 
           
-     <form id="add-order">
+     <form id="add-order" class="hidden">
         <div class="form-container">
             <label for="name">Name:</label>
            <input type="name" id="name" name="name" placeholder="E.g John" />
@@ -52,7 +51,7 @@
     <article class="main-wrapper">
 
                <div class="button-container">
-                 <a href="form.html" class="add-btn">+ Add Order</a>
+                 <button id="showForm" >Add Order</button>
                </div>
 
        <table class="order-table">
@@ -77,14 +76,20 @@
             <div class="box">
                 <h1>Total Orders</h1>
                 <p id="total-orders">
-
                 </p>
                </div>
+
                  <div class="box">
                 <h1>Total Revenue</h1>
                <p id="total-revenue">
                </p>
                </div>
+
+                 <div class="box">
+                <h1>Orders in Progress</h1>
+                <p id="total-progress">   
+                </p>
+                </div>
         </div>
         
       <script src="/js/script.js"></script>

@@ -2,12 +2,9 @@ let orders = [];
 let editingID = null;
 
 let tbody = document.querySelector("#order-list");
-         //submit handler
 let handleOrder = document.querySelector("#add-order");
-        //event happens with preventdefault
 handleOrder.addEventListener("submit", function(e){
     e.preventDefault();
-
         //getting all the values
     let customerName = document.querySelector("#name").value;
     let serviceType = document.querySelector("#service-type").value;
@@ -15,6 +12,7 @@ handleOrder.addEventListener("submit", function(e){
     let price = document.querySelector("#price-number").value;
     let paymentType = document.querySelector("#payment-type").value;
     let statusType = document.querySelector("#status-type").value;
+    
          //boolean validation if isvalid false -> return ordervalidation()
        const isValid = orderValidation(customerName,serviceType,weight,price,paymentType, statusType);
     if(!isValid){
@@ -159,5 +157,13 @@ const paraTotalOrder = document.querySelector("#total-orders");
 const paraTotalRevenue = document.querySelector("#total-revenue");
 paraTotalRevenue.textContent = new Intl.NumberFormat("PH", {style: "currency", currency:"PHP"}).format(TotalRevenue);
 
+
 };
   
+
+const form = document.getElementById("add-order");
+const btn = document.getElementById("showForm");
+
+btn.addEventListener("click", function(){
+    form.classList.toggle('hidden');
+})
