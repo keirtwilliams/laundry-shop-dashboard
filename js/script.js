@@ -163,7 +163,13 @@ paraTotalRevenue.textContent = new Intl.NumberFormat("PH", {style: "currency", c
 
 const form = document.getElementById("add-order");
 const btn = document.getElementById("showForm");
+const cancelBtn = document.getElementById('cancel-btn');
 
 btn.addEventListener("click", function(){
     form.classList.toggle('hidden');
-})
+}) 
+
+cancelBtn.addEventListener('click', function() {
+    form.classList.add('hidden');
+    form.reset(); 
+});
